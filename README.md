@@ -12,4 +12,4 @@ cronos <wordlist> <md5 hash>
 
 - [ ] Bruteforce mode 
 - [ ] More than 1 hash
-- [ ] Multithread ? 🤷🏻‍
+- [ ] Multithread ?
