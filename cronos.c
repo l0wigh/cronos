@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
 		printf("Cronos is cracking the hash...\n");
 		while (fgets(line, sizeof(line), rockyoufile)) {
 			line[strcspn(line, "\n")] = 0;
-			pthread_create(&thread_id, NULL, rockthehash, (line, md5_hash));
+			pthread_create(&thread_id, NULL, rockthehash, NULL);
 			if (memcmp(argv[2], md5_hash, 16) == 0) {
 				printf("\rResult : %s\n", line);
 				return 0;
