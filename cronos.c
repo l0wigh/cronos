@@ -31,7 +31,7 @@ int main(int argc, char *argv[]) {
 	printf("Cronos is cracking the hash...\n");
 	while (fgets(reverseline, sizeof(reverseline), reverserockyoufile)) {
 		fseek(reverserockyoufile, -i, SEEK_END);
-		// fgets(reverseline, sizeof(reverseline), reverserockyoufile);
+		fgets(reverseline, sizeof(reverseline), reverserockyoufile);
 		line[strcspn(line, "\n")] = 0;
 		reverseline[strcspn(line, "\n")] = 0;
 		i++;
