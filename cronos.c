@@ -19,36 +19,23 @@ int main(int argc, char *argv[]) {
 		printf("Usage : cronos <wordlist> <md5 hash>\n");
 		return 0;
 	}
-
 	char md5_hash[2 * MD5_DIGEST_LENGTH + 1] = "";
-	FILE *rockyoufile;
-	FILE *reverserockyoufile;
-	rockyoufile = fopen(argv[1], "r");
-	reverserockyoufile = fopen(argv[1], "r");
-	char line[255];
-	char reverseline[255];
-	int i = 0;
-	printf("Cronos is cracking the hash...\n");
-	// while (fgets(reverseline, sizeof(reverseline), reverserockyoufile)) {
-	fseek(rockyoufile, 0, SEEK_END);
-	int ft = ftell(reverserockyoufile);
-	while (i < ftell) {
-		fseek(reverserockyoufile, -i, SEEK_END);
-		fgets(reverseline, sizeof(reverseline), reverserockyoufile);
-		line[strcspn(line, "\n")] = 0;
-		reverseline[strcspn(line, "\n")] = 0;
-		i++;
-		/**
-		rockthehash(line, md5_hash);
-		if (memcmp(argv[2], md5_hash, 16) == 0) {
-			printf("\rResult : %s\n", line);
-			return 0;
-		}
-		**/
-		rockthehash(reverseline, md5_hash);
-		if (memcmp(argv[2], md5_hash, 16) == 0) {
-			printf("\rResult : %s\n", reverseline);
-			return 0;
+	if (memcmp(argv[2], "-b", 2) == 0) {
+		printf("Not implamented right now, use a wordlist\n");
+		return 0;
+	}
+	else {
+		FILE *rockyoufile;
+		rockyoufile = fopen(argv[1], "r");
+		char line[255];
+		printf("Cronos is cracking the hash...\n");
+		while (fgets(line, sizeof(line), rockyoufile)) {
+			line[strcspn(line, "\n")] = 0;
+			rockthehash(line, md5_hash);
+			if (memcmp(argv[2], md5_hash, 16) == 0) {
+				printf("\rResult : %s\n", line);
+				return 0;
+			}
 		}
 	}
 	printf("Nothing was find, try another wordlist\n");
