@@ -29,7 +29,10 @@ int main(int argc, char *argv[]) {
 	char reverseline[255];
 	int i = 0;
 	printf("Cronos is cracking the hash...\n");
-	while (fgets(reverseline, sizeof(reverseline), reverserockyoufile)) {
+	// while (fgets(reverseline, sizeof(reverseline), reverserockyoufile)) {
+	fseek(rockyoufile, 0, SEEK_END);
+	int ft = ftell(reverserockyoufile);
+	while (i < ftell) {
 		fseek(reverserockyoufile, -i, SEEK_END);
 		fgets(reverseline, sizeof(reverseline), reverserockyoufile);
 		line[strcspn(line, "\n")] = 0;
