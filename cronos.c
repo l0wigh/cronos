@@ -35,11 +35,13 @@ int main(int argc, char *argv[]) {
 		line[strcspn(line, "\n")] = 0;
 		reverseline[strcspn(line, "\n")] = 0;
 		i++;
+		/**
 		rockthehash(line, md5_hash);
 		if (memcmp(argv[2], md5_hash, 16) == 0) {
 			printf("\rResult : %s\n", line);
 			return 0;
 		}
+		**/
 		rockthehash(reverseline, md5_hash);
 		if (memcmp(argv[2], md5_hash, 16) == 0) {
 			printf("\rResult : %s\n", line);
