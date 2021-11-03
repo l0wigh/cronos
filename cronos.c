@@ -17,7 +17,6 @@ void rockthehash(char *string, char *hash) {
 
 int main(int argc, char *argv[]) {
 	pthread_t thread_id;
-	pthread_create(&thread_id, NULL, rockthehash, NULL);
 	if (argc < 3) {
 		printf("Usage : cronos <wordlist> <md5 hash>\n");
 		return 0;
