@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
 		**/
 		rockthehash(reverseline, md5_hash);
 		if (memcmp(argv[2], md5_hash, 16) == 0) {
-			printf("\rResult : %s\n", line);
+			printf("\rResult : %s\n", reverseline);
 			return 0;
 		}
 	}
