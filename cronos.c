@@ -34,6 +34,7 @@ int main(int argc, char *argv[]) {
 		while (fgets(line, sizeof(line), rockyoufile)) {
 			line[strcspn(line, "\n")] = 0;
 			pthread_create(&thread_id, NULL, rockthehash, NULL);
+			pthread_join(thread_id, NULL);
 			if (memcmp(argv[2], md5_hash, 16) == 0) {
 				printf("\rResult : %s\n", line);
 				return 0;
