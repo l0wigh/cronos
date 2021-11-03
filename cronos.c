@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdio.h>
-#include <pthread.h>
 
 void rockthehash(char *string, char *hash) {
 	int i;
@@ -16,7 +15,6 @@ void rockthehash(char *string, char *hash) {
 }
 
 int main(int argc, char *argv[]) {
-	pthread_t thread_id;
 	if (argc < 3) {
 		printf("Usage : cronos <wordlist> <md5 hash>\n");
 		return 0;
@@ -33,8 +31,7 @@ int main(int argc, char *argv[]) {
 		printf("Cronos is cracking the hash...\n");
 		while (fgets(line, sizeof(line), rockyoufile)) {
 			line[strcspn(line, "\n")] = 0;
-			pthread_create(&thread_id, NULL, rockthehash, NULL);
-			pthread_join(thread_id, NULL);
+			rockthehash(line, md5_hash);
 			if (memcmp(argv[2], md5_hash, 16) == 0) {
 				printf("\rResult : %s\n", line);
 				return 0;
