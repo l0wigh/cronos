@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdio.h>
+#include <pthread.h>
 
 void rockthehash(char *string, char *hash) {
 	int i;

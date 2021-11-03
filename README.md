@@ -11,7 +11,7 @@ cronos <wordlist> <md5 hash>
 # Building the source code
 
 ```sh
-gcc cronos.c -o cronos_test -lssl -lcrypto
+gcc cronos.c -o cronos_test -lssl -lcrypto -lpthread
 ```
 
 # TODO
