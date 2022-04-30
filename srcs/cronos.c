@@ -15,32 +15,33 @@ void rockthehash(char *string, char *hash) {
 }
 
 int main(int argc, char *argv[]) {
+    clock_t start, end;
+    double 	cpu_time;
+
 	if(argc < 3) {
 		printf("Usage : cronos <wordlist> <md5 hash>\n");
 		return 0;
 	}
-	clock_t start, end;
-	double cpu_time;
 	start = clock();
     char md5_hash[2*MD5_DIGEST_LENGTH+1] = "";
 	FILE *rockyoufile;
 	rockyoufile = fopen(argv[1], "r");
 	char line[255];
-	printf("Cronos is cracking the hash...\n");
-	while(fgets(line, sizeof(line), rockyoufile)){ 
+	printf("\033[0;31mCronos \e[0mis cracking the hash...\n");
+	while(fgets(line, sizeof(line), rockyoufile)){
 		line[strcspn(line, "\n")] = 0;
 		rockthehash(line, md5_hash);
 		if(memcmp(argv[2], md5_hash, 16) == 0) {
 			end = clock();
 			cpu_time = ((double) (end - start)) / CLOCKS_PER_SEC;
-			printf("\rResult : %s\n", line);
-			printf("Found in : %f\n", cpu_time);
+			printf("\r\e[0mResult :\033[0;34m %s\n", line);
+			printf("\e[0mFound in : %f\n", cpu_time);
 			return 0;
 		}
 	}
 	end = clock();
 	cpu_time = ((double) (end - start)) / CLOCKS_PER_SEC;
-	printf("Nothing was found, try another wordlist\n");
+	printf("\rNothing was found, try another wordlist\n");
 	printf("Time taken : %f\n", cpu_time);
 	return 0;
 }

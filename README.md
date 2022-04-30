@@ -10,8 +10,9 @@ cronos <wordlist> <md5 hash>
 
 # Building the source code
 
+Simply use make command (```re``` will clean and make cronos again)
 ```sh
-gcc cronos.c -o cronos_test -lssl -lcrypto -lpthread
+make re
 ```
 
 # TODO
