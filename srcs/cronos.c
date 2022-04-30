@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) {
 		if(memcmp(argv[2], md5_hash, 16) == 0) {
 			end = clock();
 			cpu_time = ((double) (end - start)) / CLOCKS_PER_SEC;
-			printf("\r\e[0mResult :\033[0;34m %s\n", line);
+			printf("\r\e[0mResult   :\033[0;34m %s\n", line);
 			printf("\e[0mFound in : %f\n", cpu_time);
 			return 0;
 		}
