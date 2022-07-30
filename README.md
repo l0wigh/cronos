@@ -19,4 +19,4 @@ make re
 
 - [ ] Bruteforce mode 
 - [ ] More than 1 hash
-- [ ] Multithread ?
+- [ ] Multithread - Forks ?
