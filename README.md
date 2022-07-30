@@ -5,7 +5,7 @@ The world simpliest md5 hash cracker.
 Usage :
 
 ```sh
-cronos <wordlist> <md5 hash>
+cronos <md5 hash> <wordlist>
 ```
 
 # Building the source code
