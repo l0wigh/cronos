@@ -1,17 +1,24 @@
 #include <stdio.h>
-#include <openssl/md5.h>
+#include <openssl/evp.h>
 #include <string.h>
 #include <time.h>
 
-void rockthehash(char *string, char *hash) {
-    int i;
-    char unsigned md5[MD5_DIGEST_LENGTH] = {0};
+void rockthehash(char *string, char *hash)
+{
+	EVP_MD_CTX *mdctx;
+	unsigned int md5_digest_len = EVP_MD_size(EVP_md5());
+	unsigned char *md5;
 
-    MD5((const unsigned char *)string, strlen(string), md5);
+	mdctx = EVP_MD_CTX_new();
+	EVP_DigestInit_ex(mdctx, EVP_md5(), NULL);
 
-    for (i=0; i < MD5_DIGEST_LENGTH; i++) {
-        sprintf(hash + 2*i, "%02x", md5[i]);
-    }
+	EVP_DigestUpdate(mdctx, string, strlen(string));
+
+	md5 = (unsigned char *)OPENSSL_malloc(md5_digest_len);
+	EVP_DigestFinal_ex(mdctx, md5, &md5_digest_len);
+	EVP_MD_CTX_free(mdctx);
+	for (int i = 0; i < EVP_MD_size(EVP_md5()); i++)
+		sprintf(hash + 2 * i, "%02x", md5[i]);
 }
 
 int main(int argc, char *argv[]) {
@@ -24,7 +31,7 @@ int main(int argc, char *argv[]) {
 		return 1;
 	}
 	start = clock();
-    char md5_hash[2*MD5_DIGEST_LENGTH+1] = "";
+    char md5_hash[2*EVP_MD_size(EVP_md5())+1];
 	FILE *rockyoufile;
 	rockyoufile = fopen(argv[2], "r");
 	if (!rockyoufile)
