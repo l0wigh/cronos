@@ -2,6 +2,6 @@ john
 rockyou.txt
 cronos_test
 objs/**
-.idea/**
+.idea
 cronos
 hash.txt
