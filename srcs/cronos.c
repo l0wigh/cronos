@@ -21,7 +21,8 @@ void rockthehash(char *string, char *hash)
 		sprintf(hash + 2 * i, "%02x", md5[i]);
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
     clock_t start, end;
     double 	cpu_time;
 
