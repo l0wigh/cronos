@@ -25,7 +25,8 @@ int main(int argc, char *argv[]) {
     clock_t start, end;
     double 	cpu_time;
 
-	if(argc < 3) {
+	if(argc < 3)
+	{
 		printf("Usage : cronos <md5 hash> <wordlist>\n");
 		printf("Error : Not enough args\n");
 		return 1;
@@ -42,10 +43,12 @@ int main(int argc, char *argv[]) {
 	}
 	char line[255];
 	printf("\033[0;31mCronos \e[0mis cracking the hash...\n");
-	while(fgets(line, sizeof(line), rockyoufile)){
+	while(fgets(line, sizeof(line), rockyoufile))
+	{
 		line[strcspn(line, "\n")] = 0;
 		rockthehash(line, md5_hash);
-		if(memcmp(argv[1], md5_hash, 16) == 0) {
+		if(memcmp(argv[1], md5_hash, 16) == 0)
+		{
 			end = clock();
 			cpu_time = ((double) (end - start)) / CLOCKS_PER_SEC;
 			printf("\r\e[0mResult   :\033[0;34m %s\n", line);
