@@ -23,8 +23,9 @@ void rockthehash(char *string, char *hash)
 
 int main(int argc, char *argv[])
 {
-    clock_t start, end;
+    clock_t	start, end;
     double 	cpu_time;
+	int		hash_second;
 
 	if(argc < 3)
 	{
@@ -43,17 +44,19 @@ int main(int argc, char *argv[])
 		return 2;
 	}
 	char line[255];
+	hash_second = 0;
 	printf("\033[0;31mCronos \e[0mis cracking the hash...\n");
 	while(fgets(line, sizeof(line), rockyoufile))
 	{
 		line[strcspn(line, "\n")] = 0;
 		rockthehash(line, md5_hash);
+		hash_second++;
 		if(memcmp(argv[1], md5_hash, 16) == 0)
 		{
 			end = clock();
 			cpu_time = ((double) (end - start)) / CLOCKS_PER_SEC;
 			printf("\r\e[0mResult   :\033[0;34m %s\n", line);
-			printf("\e[0mFound in : %f\n", cpu_time);
+			printf("\e[0mFound in : %f sec (%.0lf hash/s)\n", cpu_time, hash_second / cpu_time);
 			return 0;
 		}
 	}
