@@ -63,6 +63,6 @@ int main(int argc, char *argv[])
 	end = clock();
 	cpu_time = ((double) (end - start)) / CLOCKS_PER_SEC;
 	printf("\rNothing was found, try another wordlist\n");
-	printf("Time taken : %f\n", cpu_time);
+	printf("Time taken : %f sec (%.0lf hash/s)\n", cpu_time, hash_second / cpu_time);
 	return 0;
 }
